@@ -28,4 +28,8 @@ Kc = T/((L+To)*Kp);
 %lei de controle
 Ce = Kc*(1+Ti*s)*(1+Td*s)/((Ti*s)*(1+alpha*Td*s));
 P_PID = Ce*P/(1+Ce*P);
+C_PID = P/(1+P*Ce);
+figure
 step(P_PID,20)
+hold on
+step(C_PID,20)
