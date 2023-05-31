@@ -11,8 +11,8 @@ s = tf('s');
 %Ce = Kc*(1+Ti*s)(1+Td*s)/((Ti*s)*(1+alpha*Td*s))
 %alpha = 1/(1+(L/To))
 %Kc = T/((L+To)*Kp)
-%% Aplicando o controle PID equivalente ao preditor de smith temos:
-%Exemplo: Tanque aquecido com controle PI
+%% Do preditor de smith temos:
+%Exemplo: Tanque aquecido
 P = 1/(1+1.5*s);
 L = 0.5;
 P.OutputDelay = L;
@@ -20,6 +20,7 @@ P.OutputDelay = L;
 Kp = 1;
 K1 = 3; %parametro de sintonia
 T = 1.5;
+%%Aplicando o controle PID equivalente ao preditor de smith temos:
 Ti = T;
 Td = 0.5*L;
 To = T/(K1*Kp);
@@ -30,6 +31,9 @@ Ce = Kc*(1+Ti*s)*(1+Td*s)/((Ti*s)*(1+alpha*Td*s));
 P_PID = Ce*P/(1+Ce*P);
 C_PID = P/(1+P*Ce);
 figure
-step(P_PID,20)
+step(P_PID,10)
 hold on
-step(C_PID,20)
+step(C_PID,10)
+
+figure 
+step(P,10)

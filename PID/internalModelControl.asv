@@ -29,7 +29,7 @@ alpha = (Tf/(L+Tf));
 C = Kc*((1+Ti*s)/(Ti*s))*(Td*s+1/(alpha*Td*s+1));
 H = C*P/(1+C*P);
 figure
-[h,t2] = step(H,10);
-plot(t2,h)
+[y,t1] = step(Y,10);
+plot(t1,y)
 
 
