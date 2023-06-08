@@ -23,31 +23,28 @@ Pm = Kp*(1-s*L*0.5)/((1+s*T)*(1+0.5*s*L));
 %% Simulation
 
 % parameters
-Tsim = 10;
-Tdist = 5;
-AmpDist = -0.8;
+Tsim = 20;
 
-sim_02 = sim('SpolePlacementDesign.slx');
-To = 0.3;
-Kx = 2*T/((L+4*To)*Kp);
-alpha = 4*To^2/((L+4*To)*L);
-C = Kx*(1+T*s)*(1+0.5*L*s)/(T*s*(1+0.5*alpha*L*s));
-Pm = Kp*(1-s*L*0.5)/((1+s*T)*(1+0.5*s*L));
-sim_03 = sim('SpolePlacementDesign.slx');
+sim = sim('SpredictionApproach.slx');
 
 
 figure
+plot(sim.y,'b', 'linewidth', 2)
+grid on
+axis tight
+xlabel('Time, t')
+legend('Output, y(t)', 'location', 'best')
+
+figure
 subplot(2,1,1)
-plot(sim_02.y, 'r', 'linewidth', 2)       
+plot(sim.ref, 'r', 'linewidth', 2)       
 hold on
-plot(sim_03.y, '--k', 'linewidth', 1)
+plot(sim.y, 'b', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, y(t) 0.2','Output, y(t) 0.3', 'location', 'best')
+legend('Output, r(t)','Output, y(t)', 'location', 'best')
 subplot(2,1,2)
-plot(sim_02.u, 'b', 'linewidth', 1)
-hold on
-plot(sim_03.u, '--k', 'linewidth', 1)
+plot(sim.u, 'b', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, u(t) 0.2','Output u(t) 0.3', 'location', 'best') 
+legend('Output, u(t)', 'location', 'best') 

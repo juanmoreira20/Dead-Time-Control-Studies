@@ -53,19 +53,19 @@ figure
 subplot(2,1,1)
 plot(sim_01.y, 'r', 'linewidth', 2)       
 hold on
-plot(sim_02.y, 'b', 'linewidth', 2)       
+plot(sim_02.y, '.-k', 'linewidth', 2)       
 hold on
-plot(sim_03.y, 'k', 'linewidth', 1)
+plot(sim_03.y, '--k', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, y(t) 0.1','Output, y(t) 0.2','Output, y(t) 0.3', 'location', 'best')
+legend('Output, y(t) 0.','Output, y(t) 0.2','Output, y(t) 0.3', 'location', 'best')
 subplot(2,1,2)
 plot(sim_01.u, 'r', 'linewidth', 2)       
 hold on
-plot(sim_02.u, 'b', 'linewidth', 1)
+plot(sim_02.u, '.-k', 'linewidth', 1)
 hold on
-plot(sim_03.u, 'k', 'linewidth', 1)
+plot(sim_03.u, '--k', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, u(t) 0.1','Output, u(t) 0.2','Output u(t) 0.3', 'location', 'best') 
+legend('Output, u(t) 0.2','Output u(t) 0.3', 'location', 'best') 
 
