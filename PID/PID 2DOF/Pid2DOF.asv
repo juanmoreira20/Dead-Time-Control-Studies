@@ -32,20 +32,13 @@ Tsim = 150;
 Tdist = 75;
 AmpDist = -0.8;
 
-sim_02 = sim('Spid2DOF.slx');
-T = 6;
-alpha = 0.3;
-Ti = T;
-Td = 0.5*L;
-To = ((alpha^2+alpha)^(1/2) +alpha)*L/2;
-Kc = 2*T/((4*To+L)*Kp);
-b = 0.8;
-c = 1;
-Tf = 0.5*alpha*L;
-C = (Kc/Ti)*(1+Ti*s+Ti*Td*s*s)/(s*(1+s*Tf));
-F = (1+b*Ti*s+c*Ti*Td*s*s)/(1+Ti*s+Ti*Td*s*s);
-
-sim_03 = sim('Spid2DOF.slx');
+sim_02 = sim('Spid2DOF');
+To = 0.3;
+Kx = 2*T/((L+4*To)*Kp);
+alpha = 4*To^2/((L+4*To)*L);
+C = Kx*(1+T*s)*(1+0.5*L*s)/(T*s*(1+0.5*alpha*L*s));
+Pm = Kp*(1-s*L*0.5)/((1+s*T)*(1+0.5*s*L));
+sim_03 = sim('SpolePlacementDesign.slx');
 
 
 figure
