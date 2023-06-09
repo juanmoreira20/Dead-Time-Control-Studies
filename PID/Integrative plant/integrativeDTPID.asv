@@ -1,0 +1,41 @@
+close all; clc; clear;
+s = tf('s');
+
+%% for integrative processes, we use a gain Ko in feedback with the disturbance and the process, and project it using root locus
+% such as, for our FOPDT model, Ko = 0.5/(Kv*L)
+%% Next we use our pole cancelation stable formulation with a filtered
+% formulation, being that our initial formulation does not allow complex
+% zeros. C = Kc(1+(1/(s*Ti))+Td*s)/(1+Tf*s)
+%Ti = 1.5*L; Td = 2*L/3; Tf = gamma*0.5*L; Kc = 1.5/(Kv*(4*to*L))
+% To = 0.5*L*[gamma + sqrt(gamma^2+gamma)]
+%% At least, we need to use a reference filter do attenuate the overshoot.
+% Our filter is similar to 2DOF one being: F = (1+(b*Tif*s)+(c*Tif*Tdf*s*s))/(1+(Tif*s)+(Tif*Tdf*s*s))
+% Kcf = Kc+Ko; Tff =Tf; Tif = (1+(Ko/Kc))*Ti; Tdf = Kc*Tf+Ko*Tf/(Kc+ko);
+%% application
+P = 2/((1+s)*(1+0.5*s)*s*(1+0.1*s));
+P.OutputDelay = 5;
+% de Pn temos:
+Kv = 2; 
+L = 6.7;
+gamma = 0.2;
+b = 1;
+c = 1;
+Ko = 0.5/(Kv*L);
+fgamma = gamma + sqrt(gamma^2+gamma)
+To = 0.5*L*(fgamma);
+Kc = 
+
+%formulação 1: com Fo, Co e Ko:
+C = Kcf*(1+Tif*s+Tif*Tdf*s^2)/(Tif*s*(1+s*Tff));
+F = (1+(b*Tif*s)+(c*Tif*Tdf*s*s))/(1+(Tif*s)+(Ti*Tdf*s*s));
+Tinit = 10;
+Tsim = 100;
+Tdist = 50;
+AmpDist = -0.05;
+
+
+
+
+
+
+
