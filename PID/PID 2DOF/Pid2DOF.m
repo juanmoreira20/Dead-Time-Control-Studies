@@ -43,6 +43,24 @@ Tsim = 200;
 Tdist = 100;
 AmpDist = -0.8;
 
+Ts = 1;
+wz = logspace(-1,log10(pi/Ts),1000);
+dP = abs(freqresp((P - Pn),wz))./abs(freqresp(Pn,wz));
+dP = squeeze(dP(1,1,:));
+
+Ir = abs(freqresp((C*P + 1),wz))./abs(freqresp(C*P,wz));
+Ir = squeeze(Ir(1,1,:));
+
+figure
+semilogx(wz, dP, '--k', 'linewidth', 2)
+hold on
+semilogx(wz, Ir, 'b', 'linewidth', 1.5)
+grid on
+axis tight
+xlabel('Frequency, rad/s')
+ylabel('Magnitude')
+legend('Uncertainty, dP','Robustness index', 'location', 'best')
+
 sim_02 = sim('Spid2DOF.slx');
 alpha = 0.3;
 Ti = T;
@@ -60,6 +78,24 @@ den = conv([Ti 0],[alpha*Td 1]);
 Cx = tf(Kc*num,den);
 C = Kc*(1+Ti*s+Ti*Td*s^2)/(Ti*s*(1+s*Tf));
 F = (1+(b*Ti*s)+(c*Ti*Td*s*s))/(1+(Ti*s)+(Ti*Td*s*s));
+
+Ts = 1;
+wz = logspace(-1,log10(pi/Ts),1000);
+dP = abs(freqresp((P - Pn),wz))./abs(freqresp(Pn,wz));
+dP = squeeze(dP(1,1,:));
+
+Ir = abs(freqresp((C*P + 1),wz))./abs(freqresp(C*P,wz));
+Ir = squeeze(Ir(1,1,:));
+
+figure
+semilogx(wz, dP, '--k', 'linewidth', 2)
+hold on
+semilogx(wz, Ir, 'b', 'linewidth', 1.5)
+grid on
+axis tight
+xlabel('Frequency, rad/s')
+ylabel('Magnitude')
+legend('Uncertainty, dP','Robustness index', 'location', 'best')
 
 sim_03 = sim('Spid2DOF.slx');
 

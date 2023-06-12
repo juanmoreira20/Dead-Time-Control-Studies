@@ -23,6 +23,24 @@ Tsim = 150;
 Tdist = 75;
 AmpDist = -0.8;
 
+Ts = 1;
+wz = logspace(-1,log10(pi/Ts),1000);
+dP = abs(freqresp((P - Pn),wz))./abs(freqresp(Pn,wz));
+dP = squeeze(dP(1,1,:));
+
+Ir = abs(freqresp((C*P + 1),wz))./abs(freqresp(C*P,wz));
+Ir = squeeze(Ir(1,1,:));
+
+figure
+semilogx(wz, dP, '--k', 'linewidth', 2)
+hold on
+semilogx(wz, Ir, 'b', 'linewidth', 1.5)
+grid on
+axis tight
+xlabel('Frequency, rad/s')
+ylabel('Magnitude')
+legend('Uncertainty, dP','Robustness index', 'location', 'best')
+
 sim_01 = sim('SrobustPID.slx');
 
 alpha = 0.3;
@@ -33,6 +51,24 @@ Kc = 0.1086;
 % C = Kc*(1+T*s)*(1+0.5*s)/((T*s)*(alpha*L*s+1));
 C = Kc*((1+Ti*s)/(Ti*s))*((Td*s+1)/(alpha*Td*s+1));
 H = C*P/(1+C*P);
+
+Ts = 1;
+wz = logspace(-1,log10(pi/Ts),1000);
+dP = abs(freqresp((P - Pn),wz))./abs(freqresp(Pn,wz));
+dP = squeeze(dP(1,1,:));
+
+Ir = abs(freqresp((C*P + 1),wz))./abs(freqresp(C*P,wz));
+Ir = squeeze(Ir(1,1,:));
+
+figure
+semilogx(wz, dP, '--k', 'linewidth', 2)
+hold on
+semilogx(wz, Ir, 'b', 'linewidth', 1.5)
+grid on
+axis tight
+xlabel('Frequency, rad/s')
+ylabel('Magnitude')
+legend('Uncertainty, dP','Robustness index', 'location', 'best')
 
 sim_02 = sim('SrobustPID.slx');
 
@@ -46,6 +82,24 @@ Kc = 0.0829;
 % C = Kc*(1+T*s)*(1+0.5*s)/((T*s)*(alpha*L*s+1));
 C = Kc*((1+Ti*s)/(Ti*s))*((Td*s+1)/(alpha*Td*s+1));
 H = C*P/(1+C*P);
+
+Ts = 1;
+wz = logspace(-1,log10(pi/Ts),1000);
+dP = abs(freqresp((P - Pn),wz))./abs(freqresp(Pn,wz));
+dP = squeeze(dP(1,1,:));
+
+Ir = abs(freqresp((C*P + 1),wz))./abs(freqresp(C*P,wz));
+Ir = squeeze(Ir(1,1,:));
+
+figure
+semilogx(wz, dP, '--k', 'linewidth', 2)
+hold on
+semilogx(wz, Ir, 'b', 'linewidth', 1.5)
+grid on
+axis tight
+xlabel('Frequency, rad/s')
+ylabel('Magnitude')
+legend('Uncertainty, dP','Robustness index', 'location', 'best')
 
 sim_03 = sim('SrobustPID.slx');
 

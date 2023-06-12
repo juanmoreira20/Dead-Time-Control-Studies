@@ -60,6 +60,9 @@ plot(sim_03.u, '--k', 'linewidth', 1)
 grid on
 axis tight
 legend('Output, u(t) 0.2','Output u(t) 0.3', 'location', 'best') 
+
+%% Robustness indice: as gamma is constant, we only need to calculate once
+
 Ts = 1;
 wz = logspace(-1,log10(pi/Ts),1000);
 dP = abs(freqresp((P - Pn),wz))./abs(freqresp(Pn,wz));
