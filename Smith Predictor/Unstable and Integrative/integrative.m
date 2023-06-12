@@ -23,9 +23,9 @@ subplot(2,1,1)
 plot(sim.y, '--k', 'linewidth', 2)       
 grid on
 axis tight
-legend('Output, y(t) unstable', 'location', 'best')
+legend('Output, y(t) integrative', 'location', 'best')
 subplot(2,1,2)
 plot(sim.u, '--k', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, u(t) unstable', 'location', 'best') 
+legend('Output, u(t) integrative', 'location', 'best') 
