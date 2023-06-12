@@ -6,7 +6,7 @@ s = tf('s');
 % Second step: Tune F to improve closed-loop set point response
 % C is defined with one or two integrador in order to cope with step or
 % ramp disturbances or set point changes.
-Gn = -12/((1+60*s)*(1+30*s));
+Gn = -12/((1+15*s)*(1+30*s));
 P = Gn;
 Ln = 330;
 P.OutputDelay = Ln;
@@ -46,7 +46,7 @@ ylabel('Magnitude')
 legend('Uncertainty, dP','Robustness index 22','Robustness index 32', 'location', 'best')
 
 Kc = -0.73;
-z1 = -0.02;
+z1 = -0.002;
 z2 = -0.027;
 p = -0.2;
 C_sp = Kc*((s-z1)*(s-z2))/(s*(s-p));
@@ -55,27 +55,9 @@ F = 1;
 Tsim  = 6000;
 Tinit = 100;
 Tdist = 4000;
-Ampdist = -2;
+Ampdist = -1;
 Tchange = 2000;
-Ampchange = 0.02;
-
-sim = sim('SsmithPredictor.slx');
-
-figure
-subplot(2,1,1)
-plot(sim.y, 'r', 'linewidth', 2)       
-hold on
-plot(sim.ref, '--k', 'linewidth', 1)
-grid on
-axis tight
-legend('Output, y(t) sp','Reference', 'location', 'best')
-subplot(2,1,2)
-plot(sim.u, 'b', 'linewidth', 1)
-hold on
-plot(sim.ref, '--k', 'linewidth', 1)
-grid on
-axis tight
-legend('Output, u(t) sp','Reference', 'location', 'best') 
+Ampchange = -10;
 
 
 
