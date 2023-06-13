@@ -1,3 +1,3 @@
-Comparação de um PID com sintonia para sistemas com atraso e um Preditor de Smith com controlador PI
+Comparação da ação do preditor de smith com e sem filtro de referência
 
 ![Simulation](SimulationResults.jpg)
