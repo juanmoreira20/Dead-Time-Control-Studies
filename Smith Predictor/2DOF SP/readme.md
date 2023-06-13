@@ -1,3 +1,3 @@
-Comparação da ação do preditor de smith com e sem filtro de referência
+Smith predictor with and without Reference Filter
 
 ![Simulation](SimulationResults.jpg)
