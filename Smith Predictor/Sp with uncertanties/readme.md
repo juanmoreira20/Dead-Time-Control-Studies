@@ -2,7 +2,7 @@ This simulations are showing there a 20% error in time constant or gain of our p
 
 Gain error:
 
-![Simulation]GainError.jpg)
+![Simulation](GainError.jpg)
 
 Time Constant error:
 
