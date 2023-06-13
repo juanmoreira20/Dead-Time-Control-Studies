@@ -44,7 +44,7 @@ hold on
 plot(sim3.y, '-.k', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, y(t) 1.1','Output, y(t) 1.5','Output y(t) 1.8', 'location', 'best')
+legend('Output, y(t) L = 12','Output, y(t) L = 10','Output y(t) L = 8', 'location', 'best')
 subplot(2,1,2)
 plot(sim1.u, 'r', 'linewidth', 2)       
 hold on
@@ -53,4 +53,4 @@ hold on
 plot(sim3.u, '-.k', 'linewidth', 1)
 grid on
 axis tight
-legend('Output, u(t) 1.1','Output, u(t) 1.5','Output u(t) 1.8', 'location', 'best') 
+legend('Output, u(t) L = 12','Output, u(t) L = 10','Output u(t) L = 8', 'location', 'best') 
