@@ -1,0 +1,47 @@
+clc; close all; clear;
+s = tf('s');
+% For FSP, we have the same formulation of SP with a filter on the
+% predicted error, meaning that we have:
+% dFSP = abs(1+C*Gn)/abs(C*Gn*Fr), meaning that:
+% dFSP = dSP/abs(Fr)
+% if q(t) = 0, the nominal performance of the system is not altered
+% Y/Q = Gn*exp(-L*s)*(1 - exp(-L*s)*(Fr*C*Gn)/(1+C*Gn))
+% Meaning that FSP has a slower response compared to the SP
+%% Controller procedure:
+% Compute C and F for the desired closed loop response for nominal plant
+% Estimate your uncertainties and compute the filter Fr in order to obtain
+% robust stability or performance. 
+%% Fsp principle can be used in PPI:
+% for Fr = 1/(1+s*Tf) and Tf = e*Ln, being that e> 0
+% e can be tuned to achvieve performance and robustness.
+% for FPPI, C is a PI, Ti = T and Kc = 1/Kp
+% Thus, C' = Kc and we have:
+P = 1/((1+s)*(1+0.5*s)*(1+0.25*s)*(1+0.125*s));
+L = 9; % 12
+Kp = 0.8; %1.2;
+Gn = 1/(1+1.5*s);
+Pn = Gn;
+Ln = 10.5;
+e = 0.5;
+Fr = 1/(1+e*Ln*s);
+T = 1.5;
+F = 1/(1+1.5*s);
+Kc = 1;
+Ti = T;
+%% Calculating robustness indice:
+W = logspace(-2,2,300);
+dP = (1+Kc*Gn)/(Kc*Gn);
+dP = abs(freqresp(dP,W));
+dP = squeeze(dP(1,1,:));
+
+figure
+semilogx(W, dP, '--k', 'linewidth', 2)
+% hold on
+% semilogx(W, Mfreq_1', 'b', 'linewidth', 1.5)
+% hold on
+% semilogx(W, Mfreq_2', 'r', 'linewidth', 1.5)
+grid on
+axis tight
+xlabel('Frequency, rad/s')
+ylabel('Magnitude')
+legend('Uncertainty, dP','location', 'best')
