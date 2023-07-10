@@ -1,4 +1,0 @@
-clc; close all; clear;
-s = tf('s');
-
-%%Simulation:
