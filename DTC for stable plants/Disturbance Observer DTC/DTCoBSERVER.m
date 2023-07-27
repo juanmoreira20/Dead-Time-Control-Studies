@@ -10,9 +10,27 @@ s = tf('s');
 % Define F, Gn, L, P, V
 % Feq = F*Gn/(V);
 % Ceqnum = V
-% Ceqden = Gn*(1-V*exp(-Ls)
+% Ceqden = Gn*(1-V*exp(-Ls))
 %% Robustness analysis
 % for our model, we have 1+ (V(s)/Gn(s))*P(s)*delP(s) =
 % = 1 + V(s)*exp(-L*s)*delP(s) = 0, thus, delP(s) = - 1/(V(s)*exp(-L*s)),
 % meaning that dp = abs(delP(s)) = 1/abs(V(jw)) and V(s) must be tuned to
 % compromise between robustness and disturbance rejection
+%% Problem formulation:
+L = 5;
+Ln = 6;
+Gn = 1/(1+2*s);
+Pn = Gn;
+Pn.OutputDelay = Ln ;
+P = 1/((1+s)^3);
+P.OutputDelay = L;
+Tv = Ln/2;
+beta = Ln+2*Tv;
+V = (beta*s+1)/((Tv*s+1)^2);
+% To avoid non casuality, we define Ceq using num and den of V
+num = (6+2*Tv)*s + 1;
+den = Tv*Tv*s^2 + 2*Tv*s + 1;
+F = 1;
+Feq = F*Gn/V;
+Ceq = minreal(num/(Gn*(den-num*exp(-Ln*s))));
+

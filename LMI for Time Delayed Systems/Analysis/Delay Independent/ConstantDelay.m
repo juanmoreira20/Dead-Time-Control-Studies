@@ -1,12 +1,12 @@
 clear; clc; close all;
 %% LMI for constant delay:
-A = [-2 0; 0 -0.9];
-A1 = [-1 0; -1 -1];
+A = [0 1; -1 -2];
+A1 = [0, 0; -1 1];
 [~,n] = size(A);
 P = sdpvar(n,n);
 R = sdpvar(n,n);
 S = sdpvar(n,n);
-h = 4.47;
+h = 100;
 %LMI formulation
 a11 = A'*P +P*A + S - R;
 a12 = P*A1 + R;

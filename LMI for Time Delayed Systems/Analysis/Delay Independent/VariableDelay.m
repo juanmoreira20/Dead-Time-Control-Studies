@@ -7,8 +7,8 @@ P = sdpvar(n,n);
 R = sdpvar(n,n);
 S = sdpvar(n,n);
 Q = sdpvar(n,n);
-h = 3; %delay
-d = 0.2; % delay variation
+h = 4.47; %delay
+d = 0; % delay variation
 % LMI formulation
 a11 = A'*P +P*A + S + Q - R;
 a12 = 0*A;
